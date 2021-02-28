@@ -45,9 +45,9 @@ function handleHomeRoute(req, res) {
         
         })
         res.render('./pages/searches/show', {booksResult: result });
-    }).catch((err) => {
-        notFoundRoute(err, req, res);
-    });
+    }).catch(()=>{
+        res.status(500).render('./pages/error');
+      });
   }
   
   function Book(data){
