@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 app.get('/', handleHomeRoute);
 app.get('/searches/new' , handleSearchForm);
 app.get('/searches/show' , handleSearchResults);
+app.use('*', notFoundRoute );
 
 
 function handleHomeRoute(req, res) {
@@ -26,9 +27,9 @@ function handleHomeRoute(req, res) {
     res.render('pages/searches/new');
   }
 
-  function errorHandler(err, req, res) {
-    res.render('./pages/error');
-};
+  function notFoundRoute(req,res){
+    res.status(404).render('./pages/error');
+  }
 
   function handleSearchResults(req, res) {
     let searchKeyword = req.query.searched;
@@ -45,7 +46,7 @@ function handleHomeRoute(req, res) {
         })
         res.render('./pages/searches/show', {booksResult: result });
     }).catch((err) => {
-        errorHandler(err, req, res);
+        notFoundRoute(err, req, res);
     });
   }
   
