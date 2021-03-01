@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/style.css">
-</head>
-<body>
-  <main>
-      <header>
-          <nav>
-      <h1>Best Books !</h1>
-    </nav>
-    </header>
 
-    <div class = container1> 
-        <div class="dropdown">
-            <!-- <button onclick="myFunction()" class="dropbtn">Dropdown</button> -->
-            <div id="myDropdown" class="dropdown-content">
-              <a href="/">Home</a>
-              <a href="/searches/new">Search the Google Books Api</a>
-            </div>
-          </div>
+  <body>
+    <%- include('../layout/head')  %>
+  <%- include('../layout/header')  %>
+  
+  <main>
+    
+    <div class=container2>
+     <legend> <%= total %>  saved Books </legend> 
     </div>
-    <div class = container2>
-      0 saved Books
+    <div class=container3>
+      <section >
+
+        <ul>
+          <% bookList.forEach(book=>{ %>
+            <li class="bookDiv">
+              <img class="bookImg" src="<%= book.image_url  %> ">
+              <h2 class="Title" >
+                <%= book.title %>
+              </h2>
+              <p class="Author">
+                <%= book.author %>
+              </p>
+              <a class="detail" href="/books/<%= book.id %>">View Details</a>
+            </li>
+            <% }) %>
+        </ul>
+      </section>
     </div>
-    <div class = container3>
-      
-    </div>
-    <div class = container4>
-      
+    <div class=container4>
     </div>
   </main>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <%- include('../layout/footer')  %>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myLinks");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+    </script>
+    
 </body>
+
 </html>
