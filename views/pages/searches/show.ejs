@@ -22,6 +22,19 @@
                         <h2 class="Title"><%= book.title %></h2>
                         <p class="Author"><%= book.author %></p>
                         <p class="description"><%= book.description %></p>
+    
+                        <section>
+                            <form id="create-form" action="/addBooks" method="POST">
+                                <fieldset>
+                                    <input hidden type="text" name="image_url" value = "<%= book.img%>">
+                                  <input hidden type="text" name="title" value = "<%= book.title %>">
+                                  <input  hidden type="text" name="author" value = "<%= book.author  %>" >
+                                  <input  hidden type="text" name="description" value ="<%= book.description %>" >
+                                  <input hidden type="text" name="isbn" value ="<%= book.isbn %>" >
+                                  <button class = "selectBook" type="submit">Select This Book</button>
+                                </fieldset>
+                              </form>
+                          </section>
                     </div>
                 <% }) %>
             </section>

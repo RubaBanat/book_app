@@ -102,7 +102,43 @@ input[type=radio]{
     margin-bottom: 10px;
 }
 
+.selectBook{
+    width: 200px;
+}
 
+.dropbtn {
+    background-color: #a59c24;
+    color: rgb(65, 62, 62);
+    padding: 16px;
+    font-size: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #585353;
+    width: 500px;
+    overflow: auto;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    display: block;
+    text-align: center;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
 }
 
 @media (min-width: 481px){
@@ -211,5 +247,41 @@ input[type=radio]{
    .Author{
        margin-bottom: 10px;
    }
+   .selectBook{
+    width: 200px;
+}
+.dropbtn {
+    background-color: #a59c24;
+    color: rgb(65, 62, 62);
+    padding: 16px;
+    font-size: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #585353;
+    width: 500px;
+    overflow: auto;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    display: block;
+    text-align: center;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
 
 }
