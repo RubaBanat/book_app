@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/style.css">
-</head>
 <body>
+    <%- include('../../layout/head')  %>
+    <%- include('../../layout/header')  %>
     <section>
         <ul>
-             <li>
-                 <img src="<%= book.image_url  %> " >
-               <h2> <%= book.title  %></h2>
-               <p><%= book.author%></p>
-               <p> <%= book.description%></p>
+             <li class="bookDiv">
+                 <img class="bookImg" src="<%= book.image_url  %> " >
+               <h2 class="Title"> <%= book.title  %></h2>
+               <p class="Author"><%= book.author%></p>
+               <p class="description"> <%= book.description%></p>
                <p>  ISBN : <%= book.isbn%></p>
              </li>
         </ul>
      </section>
+     <%- include('../../layout/footer')  %>
+     <script>
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        </script>
 </body>
 </html>

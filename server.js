@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 3000;
 const client = new pg.Client(process.env.DATABASE_URL);
 
 app.get('/', handleHomeRoute);
-// app.get('/' ,countHandler);
 app.get('/searches', handleSearchForm);
 app.post('/searches/new', handleSearchResults);
 app.get('/books/:bookID', getDetails);
@@ -31,10 +30,10 @@ function handleHomeRoute(req, res) {
     client.query(SQL)
         .then(result => {
             //   console.log(result.rows);
-           countHandler().then(counter=>{
-            res.render('./pages/index', { bookList: result.rows, total: counter })
+            countHandler().then(counter => {
+                res.render('./pages/index', { bookList: result.rows, total: counter })
 
-           })
+            })
         })
 }
 
