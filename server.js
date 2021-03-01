@@ -21,30 +21,31 @@ app.get('/', handleHomeRoute);
 // app.get('/' ,countHandler);
 app.get('/searches', handleSearchForm);
 app.post('/searches/new', handleSearchResults);
-app.get('/books/:bookID',getDetails);
-app.post('/addBooks', addBookHandler );
+app.get('/books/:bookID', getDetails);
+app.post('/addBooks', addBookHandler);
 app.use('*', notFoundRoute);
 
 
 function handleHomeRoute(req, res) {
     let SQL = `SELECT * FROM book;`
     client.query(SQL)
-    .then (result=>{
-        //   console.log(result.rows);
-        res.render('./pages/index',{bookList:result.rows})
-        
-    })
+        .then(result => {
+            //   console.log(result.rows);
+           countHandler().then(counter=>{
+            res.render('./pages/index', { bookList: result.rows, total: counter })
+
+           })
+        })
 }
 
-// function countHandler (req , res){
-    
-//     let  count = `SELECT COUNT(id) FROM book;`
-//     client.query(count)
-//     .then (results=>{
-//         console.log(results.rows[0].count);
-//         res.render('./pages/index',{count: results.rows[0]})
-//     })
-// }
+function countHandler() {
+
+    let count = `SELECT COUNT(*) FROM book;`
+    return client.query(count)
+        .then(results => {
+            return results.rows[0].count;
+        })
+}
 
 function handleSearchForm(req, res) {
     res.render('pages/searches/new');
@@ -53,28 +54,28 @@ function handleSearchForm(req, res) {
 function notFoundRoute(req, res) {
     res.status(404).render('./pages/error');
 }
-function getDetails (req, res) {
+function getDetails(req, res) {
     let SQL = `SELECT * from book WHERE id=$1;`;
     console.log(req.params);
     let value = [req.params.bookID];
-    client.query(SQL,value)
-    .then(result=>{
-      // console.log(result.rows);
-      res.render('pages/books/detail',{book:result.rows[0]})
-    })
-  }
-  
-  function addBookHandler (req, res){
+    client.query(SQL, value)
+        .then(result => {
+            // console.log(result.rows);
+            res.render('pages/books/detail', { book: result.rows[0] })
+        })
+}
+
+function addBookHandler(req, res) {
     console.log(req.body);
     let SQL = `INSERT INTO book (author, title, isbn, image_url, description) VALUES ($1,$2,$3,$4,$5)RETURNING id;`;
     let value = req.body;
-    let safeValues= [value.author,value.title,value.isbn,value.image_url,value.description];
-    client.query(SQL,safeValues)
-    .then((result)=>{
-      console.log(result.rows);
-      res.redirect('/');
-    })
-  }
+    let safeValues = [value.author, value.title, value.isbn, value.image_url, value.description];
+    client.query(SQL, safeValues)
+        .then((result) => {
+            console.log(result.rows);
+            res.redirect('/');
+        })
+}
 
 function handleSearchResults(req, res) {
     let searchKeyword = req.body.searched;
@@ -97,7 +98,7 @@ function handleSearchResults(req, res) {
 
 function Book(data) {
     let modifiedImg = data.volumeInfo.imageLinks.thumbnail.split(":")[1];
-    
+
     this.title = data.volumeInfo.title;
     this.author = data.volumeInfo.authors ? data.volumeInfo.authors : 'Unknown Book Authors';
     this.img = data.volumeInfo.imageLinks ? `https:${modifiedImg}` : 'https://i.imgur.com/J5LVHEL.jpg';
@@ -107,6 +108,6 @@ function Book(data) {
 }
 
 client.connect()
-.then(() => {
-  app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
-})
+    .then(() => {
+        app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+    })
