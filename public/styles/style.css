@@ -95,7 +95,7 @@ input[type=radio]{
     margin-left:36px ;
     border-radius: 50px;
     text-align: center;
-    margin-bottom: 20%;
+    margin-bottom: 30%;
    
    }
    h2 {
@@ -165,6 +165,99 @@ input[type=radio]{
     margin-top: 30px;
     border-radius: 5px;
   }
+  .description{
+    border: #555 1px solid;
+    background-color: #ffffffcb;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    overflow: scroll;
+    margin-bottom: 20px;
+  }
+  .open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    width: 104px;
+    top: 70%;
+    margin-left: 15%;
+    /* margin-top: 50%; */
+  }
+  .open-button1 {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    width: 104px;
+    top: 70%;
+    margin-left: 30%;
+    
+  }
+  /* The popup form - hidden by default */
+  .form-popup {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    width: 300px;
+    margin-left:7% ;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/login button */
+  .form-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: rgb(10, 10, 10);
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
 
   footer{
     position: fixed;
@@ -174,7 +267,6 @@ input[type=radio]{
     background-size: cover;
     background-position: center;
     text-align: center;  
-  
     font-size: 15px;
     color: #fff;
     padding: 2px;
@@ -249,9 +341,88 @@ footer ul li a {
         padding: 6vw;
         border-radius: 1vh;
     }
-    
+
     input[type=radio]{
         margin-right: 10px;
+    }
+    .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: absolute;
+      bottom: 50%;
+      right: 40%;
+      width: 250px;
+    }
+    .open-button1 {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: absolute;
+      bottom: 40%;
+      right: 40%;
+      width: 250px;
+      
+    }
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      bottom: 20%;
+      right: 39%;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+      width: 300px;
+    }
+    
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+    
+    /* Full-width input fields */
+    .form-container input[type=text], .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+    
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom:10px;
+      opacity: 0.8;
+    }
+    
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: rgb(10, 10, 10);
+    }
+    
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
     }
     .filter1{
         display: flex;
@@ -298,9 +469,10 @@ footer ul li a {
     padding: 20px;
     box-shadow: 5px 10px 18px #1b1b1b;
     margin-left:36px ;
-    border-radius: 50px;
+    border-radius: 40px;
     text-align: center;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
+    
    }
 
    h2 {
@@ -368,7 +540,16 @@ footer ul li a {
     margin-top: 30px;
     border-radius: 5px;
   }
-  
+  .description{
+    border: #555 1px solid;
+    background-color: #ffffffcb;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    overflow: scroll;
+    margin-bottom: 20px;
+  }
+
 footer{
     position: fixed;
     bottom: 0;

@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
 const pg = require('pg');
+const methodOverride = require('method-override');
 const app = express();
 
 require('dotenv').config();
@@ -15,14 +16,18 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 3000;
 
-// const client = new pg.Client(process.env.DATABASE_URL);
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const client = new pg.Client(process.env.DATABASE_URL);
+// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+
+app.use(methodOverride('_method'));
 
 app.get('/', handleHomeRoute);
 app.get('/searches', handleSearchForm);
 app.post('/searches/new', handleSearchResults);
 app.get('/books/:bookID', getDetails);
-app.post('/addBooks', addBookHandler);
+app.post('/books', addBookHandler);
+app.put('/updateBook/:bookID', updateHandler);
+app.delete('/deleteBook/:bookID', deleteHandler);
 app.use('*', notFoundRoute);
 
 
@@ -97,11 +102,36 @@ function handleSearchResults(req, res) {
         });
 }
 
+function updateHandler(req, res) {
+    console.log(req.body);
+
+    let { title, author, isbn, description} = req.body;
+    // console.log(title,status);
+    let SQL = `UPDATE book SET author=$1,title=$2,isbn=$3,description=$4 WHERE id =$5;`;
+    let values = [author, title, isbn, description, req.params.bookID];
+    client.query(SQL, values)
+      .then(() => {
+        res.redirect(`/books/ ${req.params.bookID}`);
+      }) .catch(() => {
+            res.status(500).render('./pages/error');
+        });
+  
+  }
+
+  function deleteHandler(req,res) {
+    let SQL = `DELETE FROM book WHERE id=$1;`;
+    let value = [req.params.bookID];
+    client.query(SQL,value)
+    .then(()=>{
+      res.redirect('/');
+    })
+  }
+
 function Book(data) {
     let modifiedImg = data.volumeInfo.imageLinks.thumbnail.split(":")[1];
 
     this.title = data.volumeInfo.title;
-    this.author = data.volumeInfo.authors ? data.volumeInfo.authors : 'Unknown Book Authors';
+    this.author = data.volumeInfo.authors ? data.volumeInfo.authors[0] : 'Unknown Book Authors';
     this.img = data.volumeInfo.imageLinks ? `https:${modifiedImg}` : 'https://i.imgur.com/J5LVHEL.jpg';
     this.description = data.volumeInfo.description ? data.volumeInfo.description : 'Description is not available';
     this.isbn = data && data.volumeInfo && data.volumeInfo.industryIdentifiers && data.volumeInfo.industryIdentifiers[0] && data.volumeInfo.industryIdentifiers[0].type + data.volumeInfo.industryIdentifiers[0].identifier || 'ISBN Missing';

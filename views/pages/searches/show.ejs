@@ -17,7 +17,7 @@
                     </p>
                    
                     <section>
-                        <form id="create-form" action="/addBooks" method="POST">
+                        <form id="create-form" action="/books" method="POST">
                             <fieldset>
                                 <input hidden type="text" name="image_url" value="<%= book.img%>">
                                 <input hidden type="text" name="title" value="<%= book.title %>">
@@ -33,15 +33,5 @@
         </section>
     </main>
     <%- include('../../layout/footer')  %>
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myLinks");
-          if (x.style.display === "block") {
-            x.style.display = "none";
-          } else {
-            x.style.display = "block";
-          }
-        }
-        </script>
 </body>
 </html>
