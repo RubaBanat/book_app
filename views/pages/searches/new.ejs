@@ -6,27 +6,17 @@
     <%- include('../../layout/header')  %>
     <main>
         <legend>Search By Title Or Author</legend>
-        <form action="/searches/new" method="POST">
-            <input type="text" name="searched"  placeholder="Enter a title or author" >
+        <form class= "form1" action="/searches/new" method="POST">
+            <input class="input1" type="text" name="searched"  placeholder="Enter a title or author" >
             <br>
-            <label class="filter1"><input type="radio" name="searchFilter" value="title">Title</label>
+            <label class="filter1"><input  type="radio" name="searchFilter" value="title">Title</label>
             <br>
-            <label class="filter1"><input type="radio" name="searchFilter" value="author">Author</label>
+            <label class="filter1"><input  type="radio" name="searchFilter" value="author">Author</label>
             <br>
             <button class="button" type="submit">Search the Google Books API</button>
         </form>
 
     </main>
     <%- include('../../layout/footer')  %>
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myLinks");
-          if (x.style.display === "block") {
-            x.style.display = "none";
-          } else {
-            x.style.display = "block";
-          }
-        }
-        </script>
 </body>
 </html>
